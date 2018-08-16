@@ -1,13 +1,11 @@
 var WJ = {
     Init: function() {
-    
     },
     Widget: { 
         GetJobs: function() {
+			var company_id = 1;
             $.ajax({
-                url: 'http://localhost:3000/api/jobs/getAllJobs', // need to include the company id as a parameter
-                type: 'GET',
-                contentType: "application/json",
+                url: 'http://localhost:3000/api/jobs/'+company_id,
                 dataType: "json",
                 crossDomain: true,
                 success: function(data) {
