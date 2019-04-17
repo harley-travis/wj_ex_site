@@ -3,9 +3,10 @@ var WJ = {
     },
     Widget: { 
         GetJobs: function() {
+			// figure out how to put in this company_id dynamcially 
 			var company_id = 1;
             $.ajax({
-                url: 'http://localhost:3000/api/jobs/'+company_id,
+                url: 'http://localhost:8000/api/company/'+company_id,
                 dataType: "json",
                 crossDomain: true,
                 success: function(data) {
@@ -14,7 +15,7 @@ var WJ = {
                         
                     for(var i = 0; i < data.length; i++) {
                         var job = data[i];
-                        var html = "<tr><td>"+job.title+"</td><td>"+job.department+"</td><td>"+job.location+"</td><td><a href='#' class='btn btn-success btn-sm'>View Job</a></td></tr>"
+                        var html = "<tr><td>"+job.title+"</td><td>"+job.department+"</td><td>"+job.location+"</td><td><a href='http://localhost:8000/postings/view/"+company_id+"/"+job.id+"' class='btn btn-success btn-sm' target='_blank'>View Job</a></td></tr>"
                         $("#wj-table").find('tbody').append(html);
                     }
                 },
@@ -22,7 +23,7 @@ var WJ = {
                     console.log('nope');
                 }
             });
-        }
+        },
     }
 }
 
